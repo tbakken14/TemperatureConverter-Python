@@ -1,4 +1,4 @@
-VALID_UNITS = ["F", "C", "K"]
+CONSTRAINTS = {"F" : -459.67, "C" : -273.15, "K" : 0}
 
 def getValidInputs():
     fromUnit = getValidInput("Enter a unit to convert from: ", 
@@ -10,9 +10,9 @@ def getValidInputs():
                                      fromUnit)
     return [fromUnit, toUnit, temperature]
 
-def getValidInput(prompt, _isValid, unit = None):
+def getValidInput(prompt, _isValid, *args):
     input = getInput(prompt)
-    while(not _isValid(input, unit)):
+    while(not _isValid(input, *args)):
         input = getInput(prompt)
     return input
 
@@ -25,15 +25,13 @@ def validateTemperature(temperature, unit):
         print("\nTemperature is not a number\n")
         return False
     temperature = float(temperature)
-    if not ((unit == "F" and temperature >= -459.67) or \
-           (unit == "C" and temperature >= -273.15) or \
-           (unit == "K" and temperature >= 0)):
+    if temperature < CONSTRAINTS[unit]:
         print("\nTemperature is below absolute zero\n")
         return False
     return True
     
 def validateUnit(unit, *args):
-    if not unit in VALID_UNITS:
+    if not unit in CONSTRAINTS:
         print("\nUnit is not valid\n")
         return False
     return True
