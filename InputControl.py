@@ -5,10 +5,10 @@ def getValidInputs():
                                     validateUnit)
     toUnit = getValidInput("Enter a unit to convert to: ", 
                                   validateUnit)
-    temperature = getValidInput(f"Enter temperature to convert from {fromUnit} to {toUnit} : ", 
+    fromTemperature = getValidInput(f"Enter temperature to convert from {fromUnit} to {toUnit}: ", 
                                      validateTemperature, 
                                      fromUnit)
-    return [fromUnit, toUnit, temperature]
+    return [fromUnit, toUnit, float(fromTemperature)]
 
 def getValidInput(prompt, _isValid, *args):
     input = getInput(prompt)
