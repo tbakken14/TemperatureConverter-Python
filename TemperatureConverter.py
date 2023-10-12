@@ -11,7 +11,7 @@ def fahrenheitToCelsius(temperature):
     return (temperature - 32) * 5 / 9.0
 
 def fahrenheitToKelvin(temperature):
-    return fahrenheitToCelsius(celsiusToKelvin(temperature))
+    return celsiusToKelvin(fahrenheitToCelsius(temperature))
 
 def kelvinToFahrenheit(temperature):
-    return kelvinToCelsius(celsiusToFahrenheit(temperature))
+    return celsiusToFahrenheit(kelvinToCelsius(temperature))
